@@ -3,31 +3,51 @@
 <%# <form action="/users" method="POST" accept-charset="UTF-8">
 
   <label for="username">Username:</label>
-  <input type="text" id="username" name="user[username]"><br><br>
+  <input type="text" id="username" name="user[username]">
 
   <label for="email">Email</label>
-  <input type="email" id="email" name="user[email]"><br><br>
+  <input type="email" id="email" name="user[email]">
 
   <label for="password">Password</label>
   <input type="password" id="password" name="user[password]">
 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"<br><br>
+  <input type="hidden" name="authenticity_token" value=" form_authenticity_token %>
 
   <%# <input type="submit" value="Submit">
 </form> %>
 
+<%# form_tag("/users", method: "post") do %>
 
-<%= form_tag("/users", method: "post") do %>
+    <%# label_tag(:user_username, "Username") %>
+    <%# text_field_tag('user[username]') %>
 
-    <%= label_tag(:user_username, "Username") %>
-    <%= text_field_tag('user[username]') %><br><br>
+    <%# label_tag(:user_email, "Email") %>
+    <%# email_field_tag('user[email]') %>
 
-    <%= label_tag(:user_email, "Email") %>
-    <%= email_field_tag('user[email]') %><br><br>
+    <%# label_tag(:user_password, "Password") %>
+    <%# password_field_tag('user[password]') %>
 
-    <%= label_tag(:user_password, "Password") %>
-    <%= password_field_tag('user[password]') %><br><br>
-
-    <%= submit_tag("Submit") %>
+    <%# submit_tag("Submit") %>
  
+<%# end %>  
+
+
+
+<%= form_with model: @user do |form| %>
+ <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field(:username) %>
+</div><br><br>
+
+ <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field(:email) %>
+</div><br><br>
+
+ <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field(:password) %>
+</div><br><br>
+
+<%= form.submit %>
 <% end %>
